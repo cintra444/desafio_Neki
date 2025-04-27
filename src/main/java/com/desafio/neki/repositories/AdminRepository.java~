@@ -1,0 +1,6 @@
+package com.desafio.neki.repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public class AdminRepository extends JpaRepository<String, Long> {
+}
