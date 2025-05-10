@@ -11,7 +11,7 @@ public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String nome;
     private String description;
     private LocalDate data;
@@ -25,7 +25,7 @@ public class Event {
 
     public Event() {}
 
-    public Event(Long id, String nome, LocalDate data,String description, String localizacao, byte[] imagem, Admin adminId) {
+    public Event(Integer id, String nome, String description, LocalDate data, String localizacao, byte[] imagem, Admin adminId) {
         this.id = id;
         this.nome = nome;
         this.description = description;
@@ -35,11 +35,11 @@ public class Event {
         this.adminId = adminId;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

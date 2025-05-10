@@ -1,6 +1,7 @@
 package com.desafio.neki.controllers;
 
 
+import com.desafio.neki.dtos.AdminDto;
 import com.desafio.neki.models.LoginRequest;
 import com.desafio.neki.services.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,13 +23,9 @@ public class AuthController {
     @PostMapping("/login")
     @Operation(summary = "Login", description = "Endpoint para autenticar login de usuário")
     @ApiResponse(responseCode = "200", description = "Login realizado com sucesso")
-    public ResponseEntity<?> autenticar(@RequestBody LoginRequest loginRequest) {
-        try {
-            Object user = authService.autenticar(loginRequest.getEmail(), loginRequest.getPassword());
-            return ResponseEntity.ok(user);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-
+    public ResponseEntity<AdminDto> autenticar(@RequestBody LoginRequest loginRequest) {
+    AdminDto adminDto = authService.autenticar(loginRequest.getEmail(), loginRequest.getPassword());
+    return ResponseEntity.ok(adminDto);
     }
+
 }

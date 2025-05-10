@@ -5,13 +5,13 @@ import com.desafio.neki.models.Event;
 import java.time.LocalDate;
 
 public record EventDto(
-    Long id,
+    Integer id,
     String name,
     String description,
     LocalDate data,
     String localizacao,
     byte[] imagem,
-    Long adminId
+    Integer adminId
 ) {
     public Event toEntity() {
         Event event = new Event();

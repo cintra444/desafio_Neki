@@ -12,21 +12,18 @@ import org.springframework.stereotype.Service;
 public class AuthService {
 
     @Autowired
-    private AdminRepository adimRepository;
+    private AdminRepository adminRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    public AdminDto autenticar(String email, String password) {
+        Admin admin = adminRepository.findByEmail(email);
 
-    public Object autenticar(String email, String password) {
-
-        Admin admin = adimRepository.findByEmail(email);
-
-        if (admin != null && passwordEncoder.matches(password, admin.getPassword())) {
-            return new AdminDto(admin.getId(), admin.getName(), admin.getEmail());
+        if (admin == null || !passwordEncoder.matches(password, admin.getPassword())) {
+            throw new AuthenticationException("Usuário ou senha inválidos", "AUTH_FAILED");
         }
-        throw new AuthenticationException("AUTH_FAILED", "Usuário ou senha inválidos");
+
+        return AdminDto.toDto(admin);
     }
-
-
 }

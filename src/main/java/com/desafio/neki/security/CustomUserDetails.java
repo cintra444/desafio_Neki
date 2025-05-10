@@ -2,6 +2,7 @@ package com.desafio.neki.security;
 
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 
@@ -23,10 +24,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (authorities == null) {
-            return List.of(new GrantedAuthority[0]);
-        }
-        return List.of(authorities.toArray(new GrantedAuthority[0]));
+       return authorities;
     }
 
     @Override

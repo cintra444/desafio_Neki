@@ -1,7 +1,9 @@
 package com.desafio.neki.models;
 
-import jakarta.annotation.Generated;
+
 import jakarta.persistence.*;
+
+
 
 @Entity
 @Table(name = "admins")
@@ -9,25 +11,32 @@ public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String name;
+
+    @Column(unique = true, nullable = false)
     private String email;
     private String password;
 
-    public Admin() {}
+    public Admin() {
+    }
 
-    public Admin(Long id, String name, String email, String password) {
+    public Admin(Integer id) {
+        this.id = id;
+    }
+
+    public Admin(Integer id, String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
