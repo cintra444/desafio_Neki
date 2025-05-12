@@ -1,5 +1,6 @@
 package com.desafio.neki.dtos;
 
+import com.desafio.neki.models.Admin;
 import com.desafio.neki.models.Event;
 
 import java.time.LocalDate;
@@ -13,7 +14,7 @@ public record EventDto(
     byte[] imagem,
     Integer adminId
 ) {
-    public Event toEntity() {
+    public Event toEntity(Admin admin) {
         Event event = new Event();
         event.setId(id);
         event.setNome(name);
@@ -21,6 +22,7 @@ public record EventDto(
         event.setData(data);
         event.setLocalizacao(localizacao);
         event.setImagem(imagem);
+        event.setAdminId(admin);
 
         return event;
     }

@@ -28,7 +28,7 @@ public CustomUserDetailsService(UserRepository userRepository) {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         return new CustomUserDetails(
-                user.getUrsername(),
+                user.getUsername(),
                 user.getPassword(),
                 List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole())));
     }
